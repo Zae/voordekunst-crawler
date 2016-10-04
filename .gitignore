@@ -2,3 +2,19 @@ build
 composer.lock
 docs
 vendor
+
+# IDE meta files #
+##################
+nbproject/
+.settings/
+.buildpath
+.project
+.idea
+atlassian-ide-plugin.xml
+
+# OS generated files #
+######################
+.DS_Store*
+ehthumbs.db
+Thumbs.db
+

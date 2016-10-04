@@ -21,7 +21,7 @@ class Crawler
             $percentageDonated = trim($crawler->filter('div.progress-bar')->first()->attr('aria-valuenow'));
             $numDaysLeft = trim($crawler->filter('strong.daysleft__days')->first()->text());
         } catch (\Exception $e) {
-            throw new VdkCrawlException('Crawler cannot parse HTML');
+            throw new VdkCrawlException($e->getMessage());
         }
 
         return new Project(
@@ -33,13 +33,5 @@ class Crawler
             $percentageDonated,
             $numDaysLeft
         );
-    }
-
-    /**
-     * @return string
-     */
-    private function getProjectUrl()
-    {
-        return sprintf('%s/%s', self::BASE_URL, $this->projectSlug);
     }
 }

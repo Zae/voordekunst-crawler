@@ -12,7 +12,9 @@ class Crawler
     public function getProjectData(Html $html)
     {
         try {
-            $crawler = new DomCrawler($html->getHtml());
+            $crawler = new DomCrawler();
+            $crawler->addHtmlContent($html->getHtml());
+
             $title = trim($crawler->filter('h1')->first()->text());
             $donatedAmount = trim($crawler->filter('strong.donated__amount')->first()->text());
             $goalAmount = trim($crawler->filter('span.donated__goal')->first()->text());
@@ -27,8 +29,8 @@ class Crawler
         return new Project(
             $html,
             $title,
-            $donatedAmount,
-            $goalAmount,
+            trim(ltrim($donatedAmount, '€')),
+            trim(ltrim($goalAmount, '€')),
             $numDonors,
             $percentageDonated,
             $numDaysLeft

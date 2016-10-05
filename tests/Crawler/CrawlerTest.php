@@ -4,6 +4,7 @@ namespace Vpl\VdkCrawler\Crawler;
 
 use Vpl\VdkCrawler\Entity\Html;
 use Vpl\VdkCrawler\Reader\Reader;
+use Vpl\VdkCrawler\Repository\ProjectRepository;
 
 class CrawlerTest extends \PHPUnit_Framework_TestCase
 {
@@ -27,6 +28,10 @@ class CrawlerTest extends \PHPUnit_Framework_TestCase
         $project = $this->getCrawler()->getProjectData($html);
 
         $this->assertInstanceOf('Vpl\VdkCrawler\Entity\Project', $project);
+
+        $pdo = new \PDO('mysql:host=localhost;dbname=crawler', 'vagrant', 'vagrant');
+        $projectRepository = new ProjectRepository($pdo);
+        $projectRepository->save($project);
     }
 
     /**

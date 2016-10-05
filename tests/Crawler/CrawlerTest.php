@@ -2,7 +2,6 @@
 
 namespace Vpl\VdkCrawler\Crawler;
 
-use Vpl\VdkCrawler\Crawler\Crawler;
 use Vpl\VdkCrawler\Entity\Html;
 use Vpl\VdkCrawler\Reader\Reader;
 

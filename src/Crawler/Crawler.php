@@ -22,6 +22,7 @@ class Crawler
             $numDonors = trim($nodeCrawler->filter('strong')->first()->text());
             $percentageDonated = trim($crawler->filter('div.progress-bar')->first()->attr('aria-valuenow'));
             $numDaysLeft = trim($crawler->filter('strong.daysleft__days')->first()->text());
+            $numDaysLeftText = trim($crawler->filter('span.daysleft__text')->first()->text());
         } catch (\Exception $e) {
             throw new VdkCrawlException($e->getMessage());
         }
@@ -33,7 +34,7 @@ class Crawler
             trim(ltrim($goalAmount, '€')),
             $numDonors,
             $percentageDonated,
-            $numDaysLeft
+            sprintf('%d %s', $numDaysLeft, $numDaysLeftText)
         );
     }
 }

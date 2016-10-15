@@ -1,4 +1,4 @@
-CREATE TABLE vdk_project (
+CREATE TABLE IF NOT EXISTS vdk_project (
         id INT AUTO_INCREMENT NOT NULL,
         project_id INT NOT NULL,
         created_at DATETIME NOT NULL,
@@ -7,7 +7,7 @@ CREATE TABLE vdk_project (
         goal_amount VARCHAR(25) DEFAULT '0',
         num_donors INT DEFAULT 0,
         percentage_donated INT DEFAULT 0,
-        num_days_left INT DEFAULT 0,
+        num_days_left VARCHAR(25) NOT NULL,
         url VARCHAR(255) NOT NULL,
         PRIMARY KEY(id),
         INDEX vdk_project_idx_1 (project_id, created_at DESC)

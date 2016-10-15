@@ -25,7 +25,7 @@ class ProjectRepository
     public function save(Project $project)
     {
         try {
-            $sql = 'INSERT INTO vdk_project (
+            $sql = 'INSERT INTO wp_vdk_projects (
                 project_id,
                 created_at,
                 title,

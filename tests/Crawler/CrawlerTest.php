@@ -28,10 +28,6 @@ class CrawlerTest extends \PHPUnit_Framework_TestCase
         $project = $this->getCrawler()->getProjectData($html);
 
         $this->assertInstanceOf('Vpl\VdkCrawler\Entity\Project', $project);
-
-        $pdo = new \PDO('mysql:host=localhost;dbname=vrijplaats', 'vagrant', 'vagrant');
-        $projectRepository = new ProjectRepository($pdo);
-        $projectRepository->save($project);
     }
 
     /**

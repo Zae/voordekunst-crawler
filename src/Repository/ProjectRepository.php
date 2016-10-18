@@ -12,9 +12,12 @@ class ProjectRepository
      */
     private $pdo;
 
-    public function __construct(\PDO $pdo)
+    private $tableName;
+
+    public function __construct(\PDO $pdo, $tableName='projects')
     {
         $this->pdo = $pdo;
+        $this->tableName = $tableName;
     }
 
     /**
@@ -25,7 +28,7 @@ class ProjectRepository
     public function save(Project $project)
     {
         try {
-            $sql = 'INSERT INTO wp_vdk_projects (
+            $sql = sprintf('INSERT INTO wp_vdk_projects (
                 project_id,
                 created_at,
                 title,
@@ -45,7 +48,7 @@ class ProjectRepository
                 :percentageDonated,
                 :numDaysLeft,
                 :url
-            )';
+            )', $this->tableName);
 
             $createdAt = new \DateTime();
             $stmt = $this->pdo->prepare($sql);
